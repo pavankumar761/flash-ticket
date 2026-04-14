@@ -11,6 +11,7 @@ target/
 *.ipr
 .vscode/
 .sts4-cache
+out/
 
 # --- OS Specific ---
 .DS_Store
