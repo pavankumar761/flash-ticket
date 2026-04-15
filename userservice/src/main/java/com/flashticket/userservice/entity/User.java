@@ -34,7 +34,7 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    private String password; // We will hash this later!
+    private String password;
 
-    private String fullName;
+    private String name;
 }

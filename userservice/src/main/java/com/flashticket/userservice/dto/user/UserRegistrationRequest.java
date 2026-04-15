@@ -11,5 +11,5 @@ import lombok.Data;
 public class UserRegistrationRequest {
     private String email;
     private String password;
-    private String fullName;
+    private String name;
 }
