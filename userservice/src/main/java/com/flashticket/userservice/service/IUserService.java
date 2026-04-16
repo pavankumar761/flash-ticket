@@ -12,4 +12,5 @@ public interface IUserService {
 
     UserResponseDTO registerUser(UserRegistrationRequest request);
 
+    UserResponseDTO getUserByEmail(String email);
 }
