@@ -1,11 +1,11 @@
 package com.flashticket.userservice.controller;
 
-import com.flashticket.userservice.dto.login.LoginRequestDTO;
-import com.flashticket.userservice.dto.login.LoginResponseDTO;
 import com.flashticket.userservice.dto.user.UserRegistrationRequest;
 import com.flashticket.userservice.dto.user.UserResponseDTO;
 import com.flashticket.userservice.service.IUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,5 +26,11 @@ public class UserController {
     @PostMapping("/register")
     public UserResponseDTO register(@RequestBody UserRegistrationRequest requestDTO) {
         return userService.registerUser(requestDTO);
+    }
+
+    @GetMapping("/me")
+    public UserResponseDTO getCurrentUser(Authentication authentication) {
+        String email = authentication.getName();
+        return userService.getUserByEmail(email);
     }
 }

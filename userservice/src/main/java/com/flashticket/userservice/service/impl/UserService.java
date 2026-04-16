@@ -30,4 +30,10 @@ public class UserService implements IUserService {
         User savedUser = userRepository.save(user);
         return userMapper.toUserResponseDTO(savedUser);
     }
+
+    @Override
+    public UserResponseDTO getUserByEmail(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+        return userMapper.toUserResponseDTO(user);
+    }
 }

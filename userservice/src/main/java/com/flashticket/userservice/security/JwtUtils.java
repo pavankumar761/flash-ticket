@@ -2,6 +2,7 @@ package com.flashticket.userservice.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -16,8 +17,13 @@ import java.util.Date;
 @Component
 public class JwtUtils {
 
-    private final String jwtSecret = "db26a381c635ffc85a12b0e9df4a6fb582872aa1292f875c414b5e90aa868d15";
-    private final int jwtExpirationMs = 43200000;
+    private final String jwtSecret;
+    private final int jwtExpirationMs;
+
+    public JwtUtils(@Value("${app.jwt.secret}")String jwtSecret) {
+        this.jwtSecret = jwtSecret;
+        this.jwtExpirationMs = 43200000;
+    }
 
     private SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
